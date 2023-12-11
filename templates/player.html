@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Player</title>
+</head>
+<body>
+    <h1>Spotify Player</h1>
+    {% if current_track %}
+        <p>Currently Playing: {{ current_track['item']['name'] }} by {{ current_track['item']['artists'][0]['name'] }}</p>
+    {% else %}
+        <p>No track currently playing.</p>
+    {% endif %}
+    <a href="{{ url_for('play') }}">Play a Track</a>
+</body>
+</html>

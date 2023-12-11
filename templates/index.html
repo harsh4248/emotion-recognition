@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="h-screen w-screen item-center">
+        <div class="flex divide-x-4 grid-rows-none">
+            <div class="container m-auto">
+                <h2>Explore the Beat</h2>
+                <p>Immerse yourself in the rhythm! The left section features a live webcam feed, allowing you to enjoy
+                    your favorite tunes while capturing the energy of the moment. Simply turn on your webcam, and let
+                    the music move you.</p>
+
+                <ol class="list-decimal text-left mt-4">
+                    <li>Show your face in webcam by adjusting it.</li>
+                    <li>Once done, press the "Recommend" button to enjoy a personalized music experience.</li>
+                </ol>
+                <img src="{{ url_for('video_feed') }}" width="100%">
+                <form action="{{ url_for('recommend_music') }}" method="get">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit"
+                        value="Recommend">Recommend</button>
+                </form>
+            </div>
+            <div class="container m-auto">
+                {% if video_title and video_url %}
+                <h2>Recommended Playlist</h2>
+                <p>Discover new sounds on the right side of the screen. Our intelligent recommendation engine curates a
+                    personalized playlist based on your preferences. Sit back and enjoy a seamless playback experience
+                    with the embedded YouTube player. Tap into the world of music tailored just for you.</p>
+                <h2>Found video: {{ video_title }}</h2>
+                <p>Video URL: <a href="{{ video_url }}" target="_blank">{{ video_url }}</a></p>
+                <iframe width="560" height="315" src="{{ video_url }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
